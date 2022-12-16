@@ -3,8 +3,24 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#define MAX 30
+#define MAX 31
 
+
+
+
+void tutto_maiuscolo(char* str){
+
+	int i;
+	int len;
+
+	len = strlen(str);
+
+	for(i=0;i<len;i++){
+
+		if(str[i]>=97 && str[i]<=122)
+			str[i] -= 32;
+	}
+}
 
 char *chiedi_nome(){
 	char *nome_file;
@@ -27,39 +43,43 @@ char** alloca_vett(int dimensione){
 	for (i = 0; i < dimensione; i++){
 		*(vett + i )= malloc(sizeof(char)*MAX);
 	}
-	if(vett){
-		printf("Allocato un vettore di %d elementi\n", dimensione);
-	}
+	
 
 	return vett;
 }
 
 
- void inserisci_parole(int dimensione, char **vett, char *nome_file){
+ char ** inserisci_parole(int dimensione, char **vett, char *nome_file){
 
 		FILE *file;
 		file = fopen(nome_file, "r");
-		printf("Ho aperto il file %s\n", nome_file);
 		int i = 0;
 		char temporaneo[MAX];
 
 		while(!feof(file) && i < dimensione){
 			fscanf(file, "%s ", temporaneo);
+
+			tutto_maiuscolo(temporaneo);
+
+
 			strcpy(*(vett+i), temporaneo);
 			i = i + 1;
 		}
 
 
 		fclose(file);
+		return vett;
 }
 
 void visualizza_partita(int dimensione, char **vett){
 	int i;
 
-	printf("Visualizzazione partita:\n")
+	printf("\nVISUALIZZAZIONE PARTITA:\n");
 	for (i = 0; i < dimensione; i++){
 		printf("%s ", *(vett+i));
 	}
+
+	printf("\n");
 }
 
 /*
@@ -74,4 +94,7 @@ int main(){
 }
 
 */
+
+
+
 #endif
