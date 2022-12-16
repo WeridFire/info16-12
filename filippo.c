@@ -122,6 +122,22 @@ void tutto_maiuscolo(char* str){
 	}
 }
 
+int controlla_diverse(char** vet, int len){
+
+	int i,j;
+
+	for(i=0;i<len;i++){
+
+		for(j=0;j<len;j++){
+
+			if(!strcmp(*(vet+i), *(vet+j)))
+				return 0;
+		}
+	}
+
+	return 1;
+
+}
 
 int main(){
 
