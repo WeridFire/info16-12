@@ -1,40 +1,50 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
+#define MAX_STRING 30
 
 
-int conta_elementi(char* nome_file){
+int controlla_anagramma(char* a, char* b, int len){
 
-	int elements;
+	int i,j;
+	char parola1[MAX_STRING], parola2[MAX_STRING];
 
-	ftpr = fopen(*nome_file);
+	strcpy(parola1, a);
+	strcpy(parola2, b);
 
-	if(file){
+	for(i=0; i<len; i++){
 
-		elements = fscanf(file, "%s");
+		for(j=0; j<len; j++){
 
-		fclose(file);
+			if(parola1[i] == parola2[j]){
 
+				parola2[j] = '0';
+			}
 
-	}else{
-
-		printf("\nerrore apertura file");
+		}
 	}
 
-	return elements;
+	for(i=0;i<len;i++){
+
+		if(parola2[i]!='0')
+			return 0;
+	}
+
+	return 1;
 }
 
-int anagramma(char* vet, int len){
+int main(){
 
-	int scorri_parola,i,j;
-	char parola[MAX];
+    char parola1[MAX_STRING], parola2[MAX_STRING];
 
-	for(scorri_parola=0; scorri_parola<len; scorri_parola++){
+    scanf("%s", parola1);
+    scanf("%s", parola2);
+
+    printf("%d", controlla_anagramma(parola1, parola2, MAX_STRING));
 
 
 
-
-
-	}
-
+	return 0;
 
 }
