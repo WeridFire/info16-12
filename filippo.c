@@ -3,8 +3,6 @@
 #include <string.h>
 
 #define MAX_STRING 30
-
-
 int controlla_anagramma(char* a, char* b){
 
 	int i,j,len;
@@ -99,7 +97,7 @@ int check(char *vet, int len){
 
 	for(i=1; i<len & check==1; i++){
 
-		check = addchar(vet[i], vet[i+1])+addchar(vet[i+1], vet[i])+anagramma(vet[i], vet[i+1])+cambiochar(vet[i], vet[i+1]);
+		check = addchar(vet[i], vet[i+1])+addchar(vet[i+1], vet[i])+anagramma(vet[i], vet[i+1])+cambiachar(vet[i], vet[i+1]);
 
 	}
 
@@ -109,6 +107,21 @@ int check(char *vet, int len){
 	else
 		return 0;
 }
+
+void tutto_maiuscolo(char* str){
+
+	int i;
+	int len;
+
+	len = strlen(str);
+
+	for(i=0;i<len;i++){
+
+		if(str[i]>=97 || str[i]<=122)
+			str[i] -= 20;
+	}
+}
+
 
 int main(){
 
@@ -124,3 +137,4 @@ int main(){
 	return 0;
 
 }
+
